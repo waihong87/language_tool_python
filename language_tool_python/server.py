@@ -246,7 +246,6 @@ class LanguageTool:
     def _start_local_server(self):
         # Before starting local server, download language tool if needed.
         download_lt()
-        print('starting server')
         err = None
         try:
             if DEBUG_MODE:
@@ -258,8 +257,10 @@ class LanguageTool:
         except PathError as e:
             # Can't find path to LanguageTool.
             err = e
+            print(e)
         else:
             # Need to PIPE all handles: http://bugs.python.org/issue3905
+            print('start piping')
             self._server = subprocess.Popen(
                 server_cmd,
                 stdin=subprocess.PIPE,
