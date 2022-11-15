@@ -246,6 +246,7 @@ class LanguageTool:
     def _start_local_server(self):
         # Before starting local server, download language tool if needed.
         download_lt()
+        print('starting server')
         err = None
         try:
             if DEBUG_MODE:
