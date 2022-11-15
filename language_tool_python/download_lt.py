@@ -146,17 +146,17 @@ def download_lt():
     confirm_java_compatibility()
     version = LATEST_VERSION
     filename = FILENAME.format(version=version)
-    #language_tool_download_url = urljoin(BASE_URL, filename)
-    #dirname = os.path.splitext(filename)[0]
+    language_tool_download_url = urljoin(BASE_URL, filename)
+    dirname = os.path.splitext(filename)[0]
     extract_path = os.path.join(download_folder, filename)
 
     if extract_path in old_path_list:
         return
 
-    #download_zip(language_tool_download_url, download_folder)
+    download_zip(language_tool_download_url, download_folder)
 
-    shutil.copytree(os.path.join(BASE_DIR, filename), extract_path)
-    logger.info('Downloaded {} to {}.'.format(filename, extract_path))
+    #shutil.copytree(os.path.join(BASE_DIR, filename), extract_path)
+    #logger.info('Downloaded {} to {}.'.format(filename, extract_path))
 
 if __name__ == '__main__':
     sys.exit(download_lt())
