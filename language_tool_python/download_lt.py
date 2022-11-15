@@ -155,8 +155,8 @@ def download_lt():
 
     #download_zip(language_tool_download_url, download_folder)
 
-    shutil.copytree(os.path.join(BASE_DIR, filename), extract_path)
-    print('Downloaded {} to {}.'.format(filename, extract_path))
+    shutil.copytree(os.path.join(BASE_DIR, filename), download_folder)
+    print('Downloaded {} to {}.'.format(filename, download_folder))
 
 if __name__ == '__main__':
     print('exiting')
