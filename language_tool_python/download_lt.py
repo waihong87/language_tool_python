@@ -159,4 +159,5 @@ def download_lt():
     #logger.info('Downloaded {} to {}.'.format(filename, extract_path))
 
 if __name__ == '__main__':
+    print('exiting')
     sys.exit(download_lt())
