@@ -148,7 +148,7 @@ def download_lt():
     filename = FILENAME.format(version=version)
     language_tool_download_url = urljoin(BASE_URL, filename)
     dirname = os.path.splitext(filename)[0]
-    extract_path = os.path.join(download_folder, filename)
+    extract_path = os.path.join(download_folder, dirname)
 
     if extract_path in old_path_list:
         return
