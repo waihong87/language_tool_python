@@ -13,7 +13,9 @@ import os
 import tempfile
 import tqdm
 import zipfile 
+import os
 import shutil
+import stat
 
 from distutils.spawn import find_executable
 from urllib.parse import urljoin
@@ -41,6 +43,32 @@ JAVA_VERSION_REGEX_UPDATED = re.compile(
     r'^(?:java|openjdk) [version ]?(?P<major1>\d+)\.(?P<major2>\d+)',
     re.MULTILINE)
 
+
+def copytree(src, dst, symlinks = False, ignore = None):
+    if not os.path.exists(dst):
+        os.makedirs(dst)
+        shutil.copystat(src, dst)
+    lst = os.listdir(src)
+    if ignore:
+        excl = ignore(src, lst)
+        lst = [x for x in lst if x not in excl]
+    for item in lst:
+        s = os.path.join(src, item)
+        d = os.path.join(dst, item)
+        if symlinks and os.path.islink(s):
+            if os.path.lexists(d):
+                os.remove(d)
+            os.symlink(os.readlink(s), d)
+            try:
+                st = os.lstat(s)
+                mode = stat.S_IMODE(st.st_mode)
+                os.lchmod(d, mode)
+            except:
+                pass # lchmod not available
+        elif os.path.isdir(s):
+            copytree(s, d, symlinks, ignore)
+        else:
+            shutil.copy2(s, d)
 
 def parse_java_version(version_text):
     """Return Java version (major1, major2).
@@ -155,7 +183,7 @@ def download_lt():
 
     #download_zip(language_tool_download_url, download_folder)
 
-    shutil.copytree(os.path.join(BASE_DIR, filename), download_folder, dirs_exist_ok=True)
+    copytree(os.path.join(BASE_DIR, filename), download_folder)
     print('Downloaded {} to {}.'.format(filename, download_folder))
 
 if __name__ == '__main__':
