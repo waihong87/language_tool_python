@@ -28,7 +28,7 @@ logger.setLevel(logging.INFO)
 # Get download host from environment or default.
 BASE_URL = os.environ.get('LTP_DOWNLOAD_HOST', 'https://www.languagetool.org/download/')
 BASE_DIR = os.environ.get('LTP_DOWNLOAD_DIR')
-FILENAME = 'LanguageTool-{version}.zip'
+FILENAME = 'LanguageTool-{version}'
 
 LATEST_VERSION = '5.7'
 
@@ -146,17 +146,17 @@ def download_lt():
     confirm_java_compatibility()
     version = LATEST_VERSION
     filename = FILENAME.format(version=version)
-    language_tool_download_url = urljoin(BASE_URL, filename)
-    dirname = os.path.splitext(filename)[0]
-    extract_path = os.path.join(download_folder, dirname)
+    #language_tool_download_url = urljoin(BASE_URL, filename)
+    #dirname = os.path.splitext(filename)[0]
+    extract_path = os.path.join(download_folder, filename)
 
     if extract_path in old_path_list:
         return
 
-    download_zip(language_tool_download_url, download_folder)
+    #download_zip(language_tool_download_url, download_folder)
 
-    #shutil.copytree(os.path.join(BASE_DIR, filename), extract_path)
-    #logger.info('Downloaded {} to {}.'.format(filename, extract_path))
+    shutil.copytree(os.path.join(BASE_DIR, filename), extract_path)
+    print('Downloaded {} to {}.'.format(filename, extract_path))
 
 if __name__ == '__main__':
     print('exiting')
