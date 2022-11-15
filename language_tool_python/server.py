@@ -267,8 +267,11 @@ class LanguageTool:
                 universal_newlines=True,
                 startupinfo=startupinfo
             )
+            print('1', self._server)
             global RUNNING_SERVER_PROCESSES
+            print('2', RUNNING_SERVER_PROCESSES)
             RUNNING_SERVER_PROCESSES.append(self._server)
+            print('3', RUNNING_SERVER_PROCESSES)
 
             match = None
             while True:
