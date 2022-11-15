@@ -28,7 +28,7 @@ logger.setLevel(logging.INFO)
 # Get download host from environment or default.
 BASE_URL = os.environ.get('LTP_DOWNLOAD_HOST', 'https://www.languagetool.org/download/')
 BASE_DIR = os.environ.get('LTP_DOWNLOAD_DIR')
-FILENAME = 'LanguageTool-{version}'
+FILENAME = 'LanguageTool-{version}.zip'
 
 LATEST_VERSION = '5.7'
 
