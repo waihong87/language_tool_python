@@ -184,7 +184,7 @@ def download_lt():
     #download_zip(language_tool_download_url, download_folder)
 
     copytree(os.path.join(BASE_DIR, filename), download_folder)
-    print('Downloaded {} to {}.'.format(filename, download_folder))
+    logging.info('Downloaded {} to {}.'.format(filename, download_folder))
 
 if __name__ == '__main__':
     print('exiting')
