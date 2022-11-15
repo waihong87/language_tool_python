@@ -132,7 +132,7 @@ def download_zip(url, directory):
     # Remove the temporary file.
     os.remove(downloaded_file.name)
     # Tell the user the download path.
-    logger.info('Downloaded {} to {}.'.format(url, directory))
+    print('Downloaded {} to {}.'.format(url, directory))
 
 def download_lt():
     download_folder = get_language_tool_download_path()
